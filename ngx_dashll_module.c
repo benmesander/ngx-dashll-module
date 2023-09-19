@@ -37,8 +37,12 @@ typedef struct {
 	unsigned          waiting_more_body:1; /* waiting for more body to come */
 } ngx_dashll_ctx_t;
 
+
 static ngx_int_t ngx_dashll_access_handler(ngx_http_request_t *r);
+static ngx_int_t ngx_dashll_http_content_handler(ngx_http_request_t *r);
+static ngx_int_t ngx_dashll_init(ngx_conf_t *cf);
 static void ngx_dashll_payload_handler(ngx_http_request_t *r);
+
 
 /* handle body */
 static void ngx_dashll_payload_handler(ngx_http_request_t *r)
@@ -90,7 +94,7 @@ static ngx_int_t ngx_dashll_access_handler(ngx_http_request_t *r)
 
 
 /* content handler */
-ngx_int_t ngx_dashll_http_content_handler(ngx_http_request_t *r) {
+static ngx_int_t ngx_dashll_http_content_handler(ngx_http_request_t *r) {
 	ngx_int_t rc;
 
 	ngx_dashll_ctx_t     *ctx; /* request scope */
